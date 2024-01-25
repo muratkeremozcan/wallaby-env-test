@@ -1,0 +1,76 @@
+{
+  "name": "react-cypress-ts-template",
+  "version": "0.1.0",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "test:coverage": "yarn test --watchAll=false --collectCoverageFrom=src/**/*.ts* --collectCoverageFrom=!src/**/*.*.ts* --coverage",
+    "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --watch --runInBand",
+    "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|json|css|md|mdx|html)\"",
+    "lint": "eslint . --cache-location node_modules/.cache/eslint",
+    "typecheck": "tsc --noEmit",
+    "validate": "npm-run-all --parallel format lint typecheck build",
+    "cy:open": "cypress open",
+    "cy:open-e2e": "server-test 3000 'cypress open --e2e --browser chrome'",
+    "cy:run-e2e": "server-test 3000 'cypress run --e2e --browser chrome'",
+    "cy:open-ct": "cypress open --component --browser chrome",
+    "cy:run-ct": "cypress run --component --browser chrome",
+    "cy:run-ct-fast": "yarn cy:run-ct --config video=false screenshot=false"
+  },
+  "dependencies": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-scripts": "5.0.1",
+    "web-vitals": "3.5.1"
+  },
+  "devDependencies": {
+    "@cypress/grep": "4.0.1",
+    "@testing-library/cypress": "10.0.1",
+    "@testing-library/dom": "9.3.4",
+    "@testing-library/jest-dom": "6.3.0",
+    "@testing-library/react": "14.1.2",
+    "@testing-library/user-event": "14.5.2",
+    "@types/jest": "29.5.11",
+    "@types/node": "20.11.6",
+    "@types/react": "18.2.48",
+    "@types/react-dom": "18.2.18",
+    "@typescript-eslint/eslint-plugin": "6.19.1",
+    "@typescript-eslint/parser": "6.19.1",
+    "cypress": "13.6.3",
+    "eslint": "8.56.0",
+    "eslint-config-prettier": "9.1.0",
+    "eslint-config-react-app": "7.0.1",
+    "eslint-plugin-chai-friendly": "0.7.4",
+    "eslint-plugin-cypress": "2.15.1",
+    "eslint-plugin-no-only-tests": "3.1.0",
+    "eslint-plugin-prettier": "4.2.1",
+    "husky": "4.3.8",
+    "jest": "27.5.1",
+    "jest-environment-jsdom": "27.5.1",
+    "lint-staged": "15.2.0",
+    "npm-run-all": "4.1.5",
+    "prettier": "2.8.8",
+    "start-server-and-test": "2.0.3",
+    "ts-jest": "27.1.4",
+    "typescript": "4.8.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn typecheck && yarn test --watchAll=false && lint-staged"
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
